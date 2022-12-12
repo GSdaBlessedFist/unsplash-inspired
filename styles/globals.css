@@ -1,26 +1,28 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .b {
+  	@apply border border-2 border-yellow-500;
+  }
+  .bb {
+  	@apply border border-4 border-orange-500;
+  }
+  .BLUE {
+  	@apply border border-8 border-blue-400;
+  }
+  .noto{
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 22px;
+  }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
+*{
   box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+  margin: 0;
+  padding: 0;
 }
