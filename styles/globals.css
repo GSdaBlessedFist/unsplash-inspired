@@ -12,11 +12,17 @@
   .BLUE {
   	@apply border border-8 border-blue-400;
   }
+  .SECTION{
+    @apply border border-4 border-green-500;
+  }
+  .photo{
+    @apply border border-blue-400;
+  }
   .noto{
     font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 22px;
   }
 }
