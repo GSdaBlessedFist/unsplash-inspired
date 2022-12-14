@@ -1,35 +1,42 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from "next/link";
-import { GetStaticProps } from 'next'
+import {useEffect} from 'react'
+import {GetStaticProps, InferGetStaticPropsType } from 'next'
 import styles from '../styles/Home.module.css'
 import logo from "./../public/my_unsplash_logo.svg";
+const Cosmic = require('cosmicjs')
+const api = Cosmic()
 
-type PhotoInfoProps ={
+const bucket = api.bucket({
+  slug: process.env.NEXT_PUBLIC_COSMIC_SLUG,
+  read_key: process.env.NEXT_PUBLIC_COSMIC_READ_KEY,
+  write_key: process.env.NEXT_PUBLIC_COSMIC_WRITE_KEY
+})
+
+export type PhotoInfoProps ={
     src: string,
     width: number,
     height: number,
     alt: string
   }
 
-const datum1: PhotoInfoProps = {
-  scr:"https:localhost:3000",
-  width:"500px",
-  height: 600 ,
-  alt: "string"
 
-}
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async()=> {
+  const images = await bucket.media.find({ }).props('imgix_url').limit(20)
+  
   return {
     props: {
-      photoData:datum1
-    }
+      images
+    },
   };
-};
+}
 
-export default function Home({photoData}:InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home({images}:InferGetStaticPropsType<typeof getStaticProps>) {
 
-  
+  useEffect(()=>{
+    console.log(images.media[2])
+  },[])
 
   return (<>
     {/*<Head>
@@ -64,13 +71,15 @@ export default function Home({photoData}:InferGetStaticPropsType<typeof getStati
   {/*---BEGIN PHOTO DISPLAY AREA*/}
       <div id="photo-gallery-container" data-test="photo-gallery-container" className="SECTION  mt-10 h-5/6 flex justify-center items-center overflow-hidden">
         <div id="photo-area" className="bb  w-full h-full flex flex-row items-start flex-wrap gap-4">
-          <div className="photo w-[350px] h-44">
-            
-          </div>
+          
+            {images.media.map((image,index)=>
+                <div className="w-96" key={index}>
+                  <img src={image.imgix_url} alt="picture"/>
+
+                </div>
+            )}
           
         </div>
-            
-
       </div>
   {/*---BEGIN PHOTO DISPLAY AREA*/}
     </div>

@@ -20,4 +20,3 @@ describe('Home page', () => {
     // })
   })
 })
-export {}
