@@ -13,7 +13,7 @@
   	@apply border border-8 border-blue-400;
   }
   .SECTION{
-    @apply border border-4 border-green-500;
+    @apply border border-8 border-green-500;
   }
   .photo{
     @apply border border-blue-400;
@@ -28,6 +28,7 @@
 }
 
 *{
+  @apply bg-slate-900;
   box-sizing: border-box;
   margin: 0;
   padding: 0;

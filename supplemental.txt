@@ -1,0 +1,4 @@
+//supplemental.txt
+
+The original project was a frontend only SPA for adding images with labels, displaying in a masonry layout.
+I wanted to take it one step further and connect it to a CMS(Cosmic, in this case).  It hit me then, that there could only be one user so I decided to extend to a database system.  I added a user authentication and display from the db instead.
