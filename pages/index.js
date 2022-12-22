@@ -1,13 +1,13 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Script from "next/script";
+//import Image from 'next/image'
 import Link from "next/link";
 import {useEffect,useState} from 'react'
-import {GetStaticProps, InferGetStaticPropsType } from 'next'
-import styles from '../styles/Home.module.css'
-import logo from "./../public/my_unsplash_logo.svg";
+//import styles from '../styles/Home.module.css'
+//import logo from "./../public/my_unsplash_logo.svg";
 import LoginForm from "../components/login-form"
-const Cosmic = require('cosmicjs')
-const api = Cosmic()
+import * as Cosmic from 'cosmicjs';
+const api = Cosmic();
 
 const bucket = api.bucket({
   slug: process.env.NEXT_PUBLIC_COSMIC_SLUG,
@@ -15,15 +15,7 @@ const bucket = api.bucket({
   write_key: process.env.NEXT_PUBLIC_COSMIC_WRITE_KEY
 })
 
-export type PhotoInfoProps ={
-    src: string,
-    width: number,
-    height: number,
-    alt: string
-  }
-
-
-export const getStaticProps: GetStaticProps = async()=> {
+export const getStaticProps = async()=> {
   const images = await bucket.media.find({ }).props('imgix_url').limit(30)
   
   return {
@@ -33,19 +25,24 @@ export const getStaticProps: GetStaticProps = async()=> {
   };
 }
 
-export default function Home({images}:InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home({images}) {
 
   const [isLoggedIn,setIsLoggedIn] = useState(false)
 
-
-
-  useEffect(()=>{
-    
-  },[images.media])
+  const updateLoginStatus = (e)=>{
+    setIsLoggedIn(e.target.value)
+  }
+  
+  // useEffect(()=>{
+  // },[images.media])
 
   return (<>
+    <Head>
+      <title>Unsplash-inspired</title>
+    </Head>
+    <Script type="module" src="./sample-user-database.json"/>
     <div id="page-container" data-test="page-container" className="text-orange-500 desktop:w-full desktop:h-screen desktop:px-[99px] desktop:pt-[32px]">
-      {isLoggedIn ? <Dashboard images={images}/> : <LoginForm/> }
+      {!isLoggedIn ? <LoginForm isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} onChange={updateLoginStatus}/> : <Dashboard images={images}/> }
     </div>
     <div id="footer" className="w-full mb-4 desktop:text-2xl font-bold text-green-500 fixed bottom-0 text-center">&#60; IMGS+ &#62; by Jason Zamora</div>
   </>)
@@ -84,7 +81,7 @@ function Dashboard({images}){
       <div id="photo-gallery-container" data-test="photo-gallery-container" className="mt-10 h-5/6 flex justify-center items-start overflow-y-auto">
         <div id="photo-area" className="w-full    desktop:columns-4  gap-2 ">
           
-            {images.media.map((image:any,index:number)=>
+            {images.media.map((image,index)=>
                 <div className=" mb-2  object-cover" key={index} >
                   <img src={image.imgix_url} data-test="image" alt="picture"/>
                 </div>

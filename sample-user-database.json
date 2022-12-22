@@ -1,0 +1,20 @@
+[
+	{
+		"id":0,
+		"dateCreated":"",
+		"dateUpdated":"",
+		"user":"testuser",
+		"email":"testuser@testuser.com",
+		"comboStr":"opTio10pt10nIIOptIon3OPti0n4",
+		"isLoggedIn":"false"
+	},
+	{
+		"id":1,
+		"dateCreated":"",
+		"dateUpdated":"",
+		"user":"duke",
+		"email":"duke@university.duke.edu",
+		"comboStr":"combination",
+		"isLoggedIn":"false"
+	}
+]
