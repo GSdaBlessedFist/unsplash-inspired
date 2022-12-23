@@ -68,7 +68,7 @@ export default function LoginForm({isLoggedIn,setIsLoggedIn,onChange}){
 			if(results.comboStr !== comboStr){
 				let failAttemptMessageArr = ["Nope, you lose", "Sorry, please try again","Nuh-uh-uha"];
 				let pickFailAttemptMessage = ()=> failAttemptMessageArr[Math.floor(Math.random()*failAttemptMessageArr.length)]
-				console.log("%o","font-size:1.15rem;color:orange;",pickFailAttemptMessage())
+				console.log("%c%o","font-size:1.15rem;color:orange;",pickFailAttemptMessage())
 				loginAttemptTracker()
 				buttons.forEach((btn)=>{btn.disabled = false})
 				setCombination([])
