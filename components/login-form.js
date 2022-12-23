@@ -69,6 +69,7 @@ export default function LoginForm({isLoggedIn,setIsLoggedIn,onChange}){
 				let failAttemptMessageArr = ["Nope, you lose", "Sorry, please try again","Nuh-uh-uha"];
 				let pickFailAttemptMessage = ()=> failAttemptMessageArr[Math.floor(Math.random()*failAttemptMessageArr.length)]
 				console.log("%c%o","font-size:1.15rem;color:orange;",pickFailAttemptMessage())
+				setUIMessage(pickFailAttemptMessage())
 				loginAttemptTracker()
 				buttons.forEach((btn)=>{btn.disabled = false})
 				setCombination([])
@@ -101,7 +102,7 @@ export default function LoginForm({isLoggedIn,setIsLoggedIn,onChange}){
 
 		//console.log(loginInfo);
 	return (<>
-		<div className="h-1/2 inset-96 transform-origin translate-y-1/2 flex flex-col justify-center items-center ">
+		<div id="login-component" data-test="login-component" className="h-1/2 inset-96 transform-origin translate-y-1/2 flex flex-col justify-center items-center ">
 			<div id="text-above-form" className="relative top-3 right-44 bg-transparent text-green-500 font-bold text-6xl">&#60; IMGS+ &#62;</div>
 			<div id="login-wrapper" className="SECTION 2xl:w-[600px] sm:w-[360px] h-4/5 flex flex-column justify-center items-center rounded-lg">
 		{/*<div id="login-wrapper" className="SECTION w-1/3 h-4/5 flex flex-column justify-center items-center rounded-lg">*/}

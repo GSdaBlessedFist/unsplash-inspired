@@ -44,15 +44,15 @@ export default function Home({images}) {
     <div id="page-container" data-test="page-container" className="text-orange-500 desktop:w-full desktop:h-screen desktop:px-[99px] desktop:pt-[32px]">
       {!isLoggedIn ? <LoginForm isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} onChange={updateLoginStatus}/> : <Dashboard images={images}/> }
     </div>
-    <div id="footer" className="w-full mb-4 desktop:text-2xl font-bold text-green-500 fixed bottom-0 text-center">&#60; IMGS+ &#62; by Jason Zamora</div>
+    <div id="footer" className="w-full mb-0 py-4 desktop:text-2xl font-bold text-green-500 fixed bottom-0 text-center">&#60; IMGS+ &#62; by Jason Zamora</div>
   </>)
 }
 
 
 
 function Dashboard({images}){
-  return (<>
-    <div id="interface-row" className="grid grid-cols-[164px_300px_1fr_137px] grid-rows-[55px]">
+  return (<div data-test="dashboard">
+    <div id="interface-row" className="grid grid-cols-[164px_300px_1fr_100px_137px] grid-rows-[55px]">
         <div className="relative flex justify-center items-center transform-origin rotate-[-35deg]">
           <Link id="logo-link" href="/" data-test="logo-link"> 
               {/*<Image src={logo} width={384} height={26} alt="logo"/>*/}
@@ -71,6 +71,9 @@ function Dashboard({images}){
         </div>
 
         <div className="flex items-center justify-center dash text-gray-400/50"><em>add buttons for formatting</em></div>
+        <div className="flex items-center justify-center text-orange-500 text-xl">
+          <a href="/">Log out</a>
+        </div>
 
         <div className="h-[55px] w-[137px]">
           <button id="add-photo-button" data-test="add-photo-button" className="w-full h-full flex justify-center items-center bg-[#3DB46D] rounded-r-xl rounded-l-xl px-0 noto text-white drop-shadow-md">Add a photo</button>
@@ -90,5 +93,5 @@ function Dashboard({images}){
         </div>
       </div>
 
-  </>)
+  </div>)
 }

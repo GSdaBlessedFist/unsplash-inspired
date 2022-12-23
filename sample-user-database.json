@@ -6,7 +6,8 @@
 		"user":"testuser",
 		"email":"testuser@testuser.com",
 		"comboStr":"opTio10pt10nIIOptIon3OPti0n4",
-		"isLoggedIn":"false"
+		"isLoggedIn":"false",
+		"images":[]
 	},
 	{
 		"id":1,
@@ -15,6 +16,7 @@
 		"user":"duke",
 		"email":"duke@university.duke.edu",
 		"comboStr":"combination",
-		"isLoggedIn":"false"
+		"isLoggedIn":"false",
+		"images":[]
 	}
 ]
